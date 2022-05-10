@@ -1,36 +1,52 @@
-
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {AuthService} from '../services/auth.service';
-import {Router} from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  message = '';
-  user =  {
-    username: 'init username',
-    password: 'fake password'
-  };
+export class loginComponent implements OnInit {
+  loginForm = new FormGroup({
+    email:new  FormControl('',[Validators.required, Validators.email]),
+    password :new  FormControl('',Validators.required)
+
+  }
+
+  )
+ 
+  
+
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private authService :AuthService,
+    private router :Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
-
-  login(loginForm: NgForm) {
-    this.authService.login(loginForm.value).subscribe(
-      (reponse) => {
-        localStorage.setItem('token', reponse.access_token);
-        this.message = '';
-        this.router.navigate(['']);
-      },
-      (erreur) => this.message = 'Veuillez vérifier vos credantials'
-    );
-  }
+  get email(){
+    return this.loginForm.get('email');
 }
+  get password(){
+  return this.loginForm.get('password');
+}
+login(credentials: any){
+  console.log(credentials);
+  this.authService.login(credentials).subscribe(
+      (reponse)=>{
+      const token ='test' //reponse.id; 
+      const link=['Home'];
+      localStorage.setItem('token',token);
+      this.router.navigate(link);  
+    }
+  ) ;
+}
+}
+
+function next(next: any, arg1: (reponse: any) => void) {
+  throw new Error('Function not implemented.');
+}
+
