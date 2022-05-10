@@ -1,35 +1,25 @@
-<div style="margin-top: 30%;">
-  <form #loginForm="ngForm">
-    email : <input
-    type="text"
-    class="form-control"
-    [ngModel]="user.username"
-    required
-    email
-    #emailInput="ngModel"
-    name="username"
-  > <br>
-    <div
-      *ngIf="emailInput.invalid && emailInput.touched"
-      class="alert alert-danger">
-      Veuillez renseigner un email valid
-    </div>
-    password : <input
-    type="password"
-    required
-    class="form-control"
-    [ngModel]="user.password"
-    minlength="4"
-    name="password"
-  >
-  </form> <br>
-  <button
-    [disabled]="loginForm.invalid"
-    (click)="login(loginForm)"
-    class="btn btn-primary">
-    Login
-  </button>
-  <div class="alert alert-danger" *ngIf="message.length">
-    {{message}}
-  </div>
-  </div>
+<div class="form-container mat-elevation-z5">
+    <h1>login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value) ">
+        <mat-form-field>
+            <input 
+            email required
+            matInput placeholder="email" formControlName="email"
+            id="email">            <mat-error *ngIf="email?.errors?.['email']">
+                please enter a correct email format
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input   matInput placeholder="password" formControlName="password" type="password" id="pwd">
+            <mat-error *ngIf="password?.errors?.['required']">
+                password is required
+            </mat-error>
+        </mat-form-field>
+        <div class="center margin-top">
+            <button mat-raised-button color="primary" type="submit" >login</button>
+        </div>
+
+        <span class="center margin-top"><a routerLink="login">logout</a></span>
+    </form>
+
+</div>

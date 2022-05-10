@@ -1,25 +1,29 @@
 import { ExtraOptions, PreloadAllModules, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import {LoginComponent} from './login/login.component';
+
 import { UserComponent } from './user/user.component';
 import { SoldeComponent } from './solde/solde.component';
 import { ConsultationComponent } from './consultation/consultation.component';
 import { PasswordFormComponent } from './password-form/password-form.component';
 import { DemandeComponent } from './demande/demande.component';
+import { loginComponent } from './login/login.component';
 
 export const APP_ROUTES: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path : 'login',
+    component: loginComponent
   },
   {
     path: 'home',
     component: HomeComponent
   },
-
-  { path: 'login',
-    component: LoginComponent},
+  
+ 
   { path: 'user',
     component: UserComponent},
   { path: 'demande',
@@ -34,7 +38,7 @@ export const APP_ROUTES: Routes = [
 
   {
     path: '**',
-    redirectTo: 'home'
+    redirectTo: 'login'
   }
 ]
 
