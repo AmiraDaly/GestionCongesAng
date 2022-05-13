@@ -1,23 +1,24 @@
 <form>
 
-<div class="form1">
-   <label>date depart <span class="star"> *</span></label> 
-   <input type="date" placeholder="date depart" required class="input"
-   id="date depart" >
-   <label>date Retour <span class="star"> *</span></label> 
-   <input type="date" placeholder="date Retour" required class="input"
-   id="date retour" >
-   <label>
-    Status <span class="star"> *</span></label>
-    <input type="text"placeholder="status" required class="input"
-    id="stat">
+    
 
-    <label>
-        Nbre de jour de congés<span class="star"> *</span></label>
-        <input type="text" placeholder="nbre" required class="input"
-        id="stat">
-
-        <input type="button" value="valide">
+        <div class="form1">
+           <label>date depart <span class="star"> *</span></label> 
+           <input type="date" placeholder="date depart" required class="input"
+           id="date depart" #dateDep >
+           <label>date Retour <span class="star"> *</span></label> 
+           <input type="date" placeholder="date Retour" required class="input"
+           id="date retour" #dateRet >
+           <label>Commentaire  <span class="star"> *</span></label>
+            <input type="text" placeholder="Commentaire" required class="input"
+            id="stat" ngModel="motif" #comm><br><br>
+            <br><br><br>
+    
+            
+            <button type="button" (click)="fnValider(dateDep,dateRet,comm)">Valider</button>
+          
+    
+           <a href="home"> <button type="button">Quitter</button></a>
 
 
 

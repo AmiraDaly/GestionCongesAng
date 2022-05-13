@@ -8,18 +8,14 @@ const API_LOGIN = 'http://localhost:3000/user/login';
 @Injectable({
   providedIn: 'root'
 })
- 
-
-
 export class AuthService {
-  link='http://localhost:3000/auth/signin'
 
   constructor(
     private http: HttpClient
   ) { }
-  login(credentials: any){
-      return this.http.post(this.link ,credentials );
-    }
+  login(credentials:any ): Observable<any> {
+    return this.http.post(API_LOGIN, credentials);
+  }
   logout() {
     localStorage.removeItem('token');
   }
