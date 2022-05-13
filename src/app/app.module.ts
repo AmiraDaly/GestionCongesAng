@@ -25,6 +25,7 @@ import { SoldeComponent } from './solde/solde.component';
 import { UserComponent } from './user/user.component';
 import { CongeComponent } from './conge/conge.component';
 
+
 @NgModule({
   imports: [
     BrowserModule,
