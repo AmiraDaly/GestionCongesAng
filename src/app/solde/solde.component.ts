@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {SoldeCongesService} from "../services/solde-conges.service";
+import {ToastrService} from "ngx-toastr";
 export class Solde {
   constructor(
 
@@ -15,21 +17,32 @@ export class Solde {
   styleUrls: ['./solde.component.css']
 })
 export class SoldeComponent implements OnInit {
-  nbj = 0 ;
-  soldes !: Solde[];
-  constructor(private http: HttpClient
+  annuel = 0 ;
+  pris= 0 ;
+  reste = 0 ;
+  private errorMessage: any;
+  constructor(private toastr: ToastrService,
+    private http: HttpClient, private soldeCongesService : SoldeCongesService
   ) { }
 
   ngOnInit(): void {
     this.getSolde();
-    this.nbj = this.soldes[0].soldeRestant ;
   }
-  getSolde(){
-    this.http.get<any>('http://localhost:3000/user/soldeConges/1').subscribe(response => {
-        console.log(response);
-        this.soldes = response;
-    })
+  getSolde() {
+    this.soldeCongesService.getSoldeConges().subscribe({
+      next: data => {
+        console.log('succes : ', data)
+        this.annuel = data.soldeAnnuel;
+        this.pris = data.soldePris;
+        this.reste = data.soldeRestant;
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        console.log('error : ', this.errorMessage)
+        this.toastr.error('Une erreur est survenue lors de la consultation de votre solde de conges  ' + this.errorMessage, 'Oops')
 
+      }
+    });
   }
 
 }

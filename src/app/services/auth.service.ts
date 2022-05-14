@@ -4,7 +4,7 @@ import {Observable, of} from 'rxjs';
 import {ValidationErrors} from '@angular/forms';
 
 
-const API_LOGIN = 'http://localhost:3000/user/login';
+const API_LOGIN = 'http://localhost:3000/auth/signin';
 @Injectable({
   providedIn: 'root'
 })

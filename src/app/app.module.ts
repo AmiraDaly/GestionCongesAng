@@ -28,6 +28,8 @@ import { CongeComponent } from './conge/conge.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { loginComponent } from './login/login.component';
+import {authInterceptorProviders} from "./_helpers/auth.interceptor";
+import {ToastrModule} from "ngx-toastr";
 
 
 @NgModule({
@@ -46,9 +48,9 @@ import { loginComponent } from './login/login.component';
     NgbModule,
     MatInputModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
 
-    
   ],
   declarations: [
     AppComponent,
@@ -61,10 +63,10 @@ import { loginComponent } from './login/login.component';
     UserComponent,
     CongeComponent,
     loginComponent
-   
-    
+
+
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

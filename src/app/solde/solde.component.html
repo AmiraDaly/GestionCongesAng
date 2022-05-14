@@ -1,4 +1,27 @@
-<h2 class="Bonjour" style="margin-top: 30%;">Votre Solde restant est : </h2>
-<h2 class="solde" style="text-align: center;" > {{nbj}} jours de 24 jours </h2>
-<div class="d-grid gap-2">  <a href="home" >
+<h1>Compteur Conges</h1>
+
+
+<div>
+  <form class="form-container mat-elevation-z5">
+    <div>
+      <label>
+        Solde Annuel <span class="star"> </span></label>
+      <input type="text" required class="input" readonly disabled value=" {{annuel}}"
+             id="Annuel">
+    </div>
+    <div>
+      <label>
+        Solde Pris   <span class="star"> </span></label>
+      <input type="text"required class="input" readonly disabled value=" {{pris}}"
+             id="pris">
+    </div>
+    <div>
+      <label>Solde Restant <span class="star"> </span> </label>
+      <input type="text" required class="input" readonly disabled value=" {{reste}}"
+             id="res">
+    </div>
+
+  </form>
+  <div class="d-grid gap-2">  <a href="home" >
     <button class="btn btn-primary" style="width: 60%; margin-left: 20% ; margin-top: 20px;" type="button" >Retour</button></a></div>
+</div>

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 export class HomeComponent implements OnInit {
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute) {
   }
 
@@ -27,8 +28,13 @@ export class HomeComponent implements OnInit {
   login(): void {
     this._userName = 'Max';
   }
-
+  initDemandeConges(): void {
+    this.router.navigate(['/demande']);
+    window.location.reload();
+  }
   logout(): void {
-    this._userName = '';
+    window.sessionStorage.clear();
+    this.router.navigate(['/home']);
+    window.location.reload();
   }
 }
